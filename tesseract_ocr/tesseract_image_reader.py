@@ -4,13 +4,20 @@ from PIL import Image
 import pyocr.builders
 import logging
 
+
 class TesseractImageReader:
+    """
+    This class converts TEXT image to text.
+    You need to specify the folder, image file and the tesseract language
+    The class assumes that tesseract-ocr is installed on your system
+    """
+
     def __init__(self, folder, img_file, tesseract_lang):
         self.folder = folder
         self.img_file = img_file
         os.environ['TESSDATA_PREFIX'] = r"C:\Program Files\Tesseract-OCR\tessdata"
         self.tesseract_lang = tesseract_lang
-        self.tesseract_tool=self.get_tesseract_tool()
+        self.tesseract_tool = self.get_tesseract_tool()
 
     def get_tesseract_tool(self):
         tools = pyocr.get_available_tools()
